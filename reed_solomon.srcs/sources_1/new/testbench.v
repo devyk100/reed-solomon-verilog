@@ -46,30 +46,30 @@ module testbench #(parameter WIDTH = 64)();
     reset = 1;
     reset = 0;
     
-    position = 1;
-    payload = 5;
-    #5;
-    store_payload = 1;
-    #5;
     position = 2;
     payload = 7;
     #5;
-    store_payload = ~store_payload;
+    store_payload = 1;
     #5;
-    position = 5;
+    position = 3;
     payload = 41;
     #5;
     store_payload = ~store_payload;
     #5;
-    position = 4;
-    payload = 9;
+    position = 5;
+    payload = 70;
+    #5;
+    store_payload = ~store_payload;
+    #5;
+    position = 6;
+    payload = 126;
     #5;
     store_payload = ~store_payload;
     #5;
     start_compute = 0;
     #5;
     start_compute = 1;
-    #1000; 
-    
+    #20; 
+    $finish;
     end
 endmodule
