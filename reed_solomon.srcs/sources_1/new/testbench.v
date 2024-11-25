@@ -35,14 +35,13 @@ module testbench #(parameter WIDTH = 64)();
 //    $finish; 
 ////    C = A*B;
 //    end
-    reg start_compute, start, store_payload, reset;
+    reg start_compute, toggle_output, store_payload, reset;
     reg [2:0] position;
     reg[7:0] payload;
-    wire [2:0] position_1, position_2;
-    wire [7:0] payload_1, payload_2;
-    reed_solomon_interfacer rsi(start_compute, start, store_payload, reset, position, payload, position_1, payload_1, position_2, payload_2);
+    wire [2:0] position_ouptut;
+    wire [7:0] payload_output;
+    reed_solomon_interfacer rsi(start_compute, toggle_output, store_payload, reset, position, payload, position_ouptut, payload_output);
     initial begin
-    start = 0;
     reset = 1;
     reset = 0;
     
@@ -70,6 +69,10 @@ module testbench #(parameter WIDTH = 64)();
     #5;
     start_compute = 1;
     #20; 
+    toggle_output = 0;
+    #100;
+    toggle_output = 1;
+    #100;
     $finish;
     end
 endmodule
